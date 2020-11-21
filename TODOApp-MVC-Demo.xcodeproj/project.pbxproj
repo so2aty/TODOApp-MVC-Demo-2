@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		767FA02330D1EAF4DF5F4A2D /* Pods_TODOApp_MVC_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F675E6B4DF70681B4B8BD5 /* Pods_TODOApp_MVC_Demo.framework */; };
+		8D2B82712559BA0F00212A78 /* EditProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B82702559BA0F00212A78 /* EditProfileResponse.swift */; };
+		8D2B82742559BD9C00212A78 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B82732559BD9C00212A78 /* APIRouter.swift */; };
 		8D39A5E8255584750026CBD6 /* ProfileDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39A5E7255584750026CBD6 /* ProfileDetailsVC.swift */; };
 		8D39A5EC255599AB0026CBD6 /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39A5EB255599AB0026CBD6 /* LogoutResponse.swift */; };
 		8D39A5EF25559CF50026CBD6 /* DeletTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */; };
+		8D45E7DD2567DD7F006FC16B /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */; };
+		8D45E7E02567E192006FC16B /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */; };
+		8D45E7E52567E6E8006FC16B /* TodoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */; };
+		8D45E7E92567E82D006FC16B /* ProfileDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7E82567E82D006FC16B /* ProfileDetailsPresenter.swift */; };
+		8D45E7ED2568DC39006FC16B /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7EC2568DC39006FC16B /* Validators.swift */; };
 		B749BBEB2551F1B100806784 /* UIView+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B749BBEA2551F1B100806784 /* UIView+Loader.swift */; };
 		B749BBEE2551F85000806784 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B749BBEC2551F85000806784 /* TodoCell.swift */; };
 		B749BBEF2551F85000806784 /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B749BBED2551F85000806784 /* TodoCell.xib */; };
@@ -36,9 +43,16 @@
 
 /* Begin PBXFileReference section */
 		658DB19265AC46253A8B6597 /* Pods-TODOApp-MVC-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TODOApp-MVC-Demo.debug.xcconfig"; path = "Target Support Files/Pods-TODOApp-MVC-Demo/Pods-TODOApp-MVC-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		8D2B82702559BA0F00212A78 /* EditProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileResponse.swift; sourceTree = "<group>"; };
+		8D2B82732559BD9C00212A78 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		8D39A5E7255584750026CBD6 /* ProfileDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsVC.swift; sourceTree = "<group>"; };
 		8D39A5EB255599AB0026CBD6 /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
 		8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletTaskResponse.swift; sourceTree = "<group>"; };
+		8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
+		8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPresenter.swift; sourceTree = "<group>"; };
+		8D45E7E82567E82D006FC16B /* ProfileDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsPresenter.swift; sourceTree = "<group>"; };
+		8D45E7EC2568DC39006FC16B /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		91F675E6B4DF70681B4B8BD5 /* Pods_TODOApp_MVC_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TODOApp_MVC_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B749BBEA2551F1B100806784 /* UIView+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Loader.swift"; sourceTree = "<group>"; };
 		B749BBEC2551F85000806784 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
@@ -95,6 +109,33 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8D45E7DB2567DD41006FC16B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8D45E7E22567E68D006FC16B /* Authentication Presenters */,
+				8D45E7E32567E6A4006FC16B /* Main Presenters */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8D45E7E22567E68D006FC16B /* Authentication Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */,
+				8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */,
+			);
+			path = "Authentication Presenters";
+			sourceTree = "<group>";
+		};
+		8D45E7E32567E6A4006FC16B /* Main Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */,
+				8D45E7E82567E82D006FC16B /* ProfileDetailsPresenter.swift */,
+			);
+			path = "Main Presenters";
+			sourceTree = "<group>";
+		};
 		B749BBF02551F85800806784 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +161,7 @@
 				B749BBF12551FE5C00806784 /* TodosResponse.swift */,
 				B749BBF32551FEA300806784 /* TodoData.swift */,
 				8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */,
+				8D2B82702559BA0F00212A78 /* EditProfileResponse.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -146,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				B76E56902548A24A00C13D43 /* AppDelegate.swift */,
+				8D45E7EC2568DC39006FC16B /* Validators.swift */,
+				8D45E7DB2567DD41006FC16B /* Presenter */,
 				B76E56A42548A2B400C13D43 /* Networking */,
 				B76E56A52548A2BE00C13D43 /* Managers */,
 				B76E56AB2548A32D00C13D43 /* Utilities */,
@@ -163,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				B76E56BE2548AFA000C13D43 /* APIManager.swift */,
+				8D2B82732559BD9C00212A78 /* APIRouter.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -382,24 +427,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D45E7E92567E82D006FC16B /* ProfileDetailsPresenter.swift in Sources */,
 				8D39A5EF25559CF50026CBD6 /* DeletTaskResponse.swift in Sources */,
+				8D45E7E02567E192006FC16B /* SignUpPresenter.swift in Sources */,
 				8D39A5EC255599AB0026CBD6 /* LogoutResponse.swift in Sources */,
 				B749BBF22551FE5C00806784 /* TodosResponse.swift in Sources */,
 				B76E56BF2548AFA000C13D43 /* APIManager.swift in Sources */,
 				B76E56952548A24A00C13D43 /* TodoListVC.swift in Sources */,
 				B76E56912548A24A00C13D43 /* AppDelegate.swift in Sources */,
+				8D2B82712559BA0F00212A78 /* EditProfileResponse.swift in Sources */,
+				8D2B82742559BD9C00212A78 /* APIRouter.swift in Sources */,
 				B76E56C52548BACC00C13D43 /* UserData.swift in Sources */,
 				B78FB4EF254EE23B00051F31 /* UIViewController+Alert.swift in Sources */,
 				B76E56B92548A76600C13D43 /* SignInVC.swift in Sources */,
+				8D45E7E52567E6E8006FC16B /* TodoListPresenter.swift in Sources */,
 				B76E56BC2548A84600C13D43 /* SignUpVC.swift in Sources */,
 				B76E56C72548BEE100C13D43 /* UserDefaultsManager.swift in Sources */,
 				B749BBF42551FEA300806784 /* TodoData.swift in Sources */,
+				8D45E7DD2567DD7F006FC16B /* SignInPresenter.swift in Sources */,
 				8D39A5E8255584750026CBD6 /* ProfileDetailsVC.swift in Sources */,
 				B76E56B52548A63E00C13D43 /* UIViewController+Storyboard.swift in Sources */,
 				B749BBEE2551F85000806784 /* TodoCell.swift in Sources */,
 				B78FB4F0254EE23B00051F31 /* String+trimming.swift in Sources */,
 				B76E56C12548B0FD00C13D43 /* LoginResponse.swift in Sources */,
 				B749BBEB2551F1B100806784 /* UIView+Loader.swift in Sources */,
+				8D45E7ED2568DC39006FC16B /* Validators.swift in Sources */,
 				B76E56C32548B2B100C13D43 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

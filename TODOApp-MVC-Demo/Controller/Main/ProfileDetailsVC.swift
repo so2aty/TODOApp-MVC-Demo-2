@@ -8,19 +8,37 @@
 
 import UIKit
 
-class ProfileDetailsVC: UITableViewController {
-
-   
+class ProfileDetailsVC: UITableViewController, UINavigationControllerDelegate {
+    // MARK:- Outlets
     @IBOutlet weak var nameLable: UILabel!
     @IBOutlet weak var emailLable: UILabel!
     @IBOutlet weak var agelable: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
     
+    // MARK: - Public Properties
+    let imagePicker = UIImagePickerController()
+    var presenter : ProfileDetailsPresenter!
+    
+    // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadUserDetails()
+        imagePicker.delegate = self
+        presenter.loadUserData()
     }
-
+   
+    // MARK:- Public Methods
+    class func create() -> ProfileDetailsVC {
+        let profileDetailsVC: ProfileDetailsVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
+        profileDetailsVC.presenter = ProfileDetailsPresenter(view: profileDetailsVC)
+        return profileDetailsVC
+    }
+    
+    func switchToMainState() {
+        let signInVC = SignInVC.create()
+        let navigationController = UINavigationController(rootViewController: signInVC)
+        AppDelegate.shared().window?.rootViewController = navigationController
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -30,37 +48,46 @@ class ProfileDetailsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            presenter.editAge()
+        }
+    }
+    
+    
     // MARK:- Private Methods
     
-    private func loadUserDetails() {
-        APIManager.getUserDetails { (error, userData) in
-            if let error = error {
-                print("error")
-            } else if let userData = userData {
-                
-                self.nameLable.text = userData.name
-                self.emailLable.text = userData.email
-                self.agelable.text = String(userData.age)
-                self.tableView.reloadData()
-        }
-    }
-    
-}
-    
-    private func switchToMainState() {
-        let signInVC = SignInVC.create()
-        let navigationController = UINavigationController(rootViewController: signInVC)
-        AppDelegate.shared().window?.rootViewController = navigationController
-    }
-    
     @IBAction func logoutBottonPressed(_ sender: UIButton) {
-        APIManager.logOut { (error, logoutData) in
-            if let error = error {
-                print("error")
-            } else if let logoutData = logoutData {
-                self.switchToMainState()
-        }
+        presenter.logOut()
+    }
+    
+    @IBAction func addPhotoButtonPressed(_ sender: Any) {
+        presenter.addPhoto()
+        present(imagePicker, animated: true, completion: nil)
     }
 }
+// MARK: - Image Picker Extension.
 
+extension ProfileDetailsVC:UIImagePickerControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImageView.contentMode = .scaleAspectFit
+            profileImageView.image = pickedImage
+            APIManager.uploadPhoto(with: pickedImage){ (response) in
+                if  response == false {
+                    print("error")
+                } else  {
+                    print("ok")
+                }
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

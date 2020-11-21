@@ -12,20 +12,30 @@ class TodoListVC: UIViewController {
     // MARK:- Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - Private Properties
-    private var todosArr: [String] = []
+    // MARK: - Public Properties
+    var todosArr: [TodoData] = []
+    var presenter : ToDoListPresenter!
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        loadAllTodos()
+        presenter.loadAllTodos()
     }
 
     // MARK:- Public Methods
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
+        todoListVC.presenter = ToDoListPresenter(view: todoListVC)
         return todoListVC
+    }
+    
+    func showLoader() {
+        self.view.showLoader()
+    }
+    
+    func hideLoader() {
+        self.view.hideLoader()
     }
     
     // MARK:- Private Methods
@@ -56,23 +66,10 @@ class TodoListVC: UIViewController {
         self.showAlert(title: "Sorry", message: message)
     }
     
-    private func loadAllTodos() {
-        self.view.showLoader()
-        APIManager.getAllTodos { (error, todosDataArr) in
-            if let error = error {
-                self.presentError(with: error.localizedDescription)
-            } else if let todosDataArr = todosDataArr {
-                var todosDescriptionArr: [String] = []
-                for todo in todosDataArr {
-                    todosDescriptionArr.append(todo.description)
-                }
-                self.todosArr = todosDescriptionArr
-                self.tableView.reloadData()
-            }
-            self.view.hideLoader()
-        }
-    }
+  
 }
+
+// MARK: - Table view data source & delegate
 
 extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,7 +81,16 @@ extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.configure(todo: todosArr[indexPath.row])
+        cell.configure(todo: todosArr[indexPath.row].description)
+        
+        cell.deleteCompletion = { [weak self] cell in
+            guard let id = self?.todosArr[indexPath.row].id else {return}
+            APIManager.deletTask(id: id) { (error, data) in
+                if error == nil {
+                    self?.presenter.loadAllTodos()
+                }
+            }
+        }
         
         return cell
     }

@@ -31,12 +31,14 @@ struct Cells {
 // Urls
 struct URLs {
     static let base = "https://api-nodejs-todolist.herokuapp.com"
-    static let login = base + "/user/login"
-    static let Register = base + "/user/register"
-    static let todos = base + "/task"
+    static let login = "/user/login"
+    static let Register = "/user/register"
+    static let todos = "/task"
     static let delet = base + "/task/"
-    static let userDetails = base + "/user/me"
-    static let logout = base + "/user/logout"
+    static let userDetails = base +  "/user/me"
+    static let logout = "/user/logout"
+    static let EditProfile = base + "/user/me"
+    static let uploadPhoto = base + "/user/me/avatar"
 }
 
 // Header Keys

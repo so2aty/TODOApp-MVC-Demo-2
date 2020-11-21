@@ -12,6 +12,9 @@ import UIKit
 class TodoCell: UITableViewCell {
 
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var deleteCompletion: ((_ cell: TodoCell) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,14 +24,7 @@ class TodoCell: UITableViewCell {
         descriptionLabel.text = todo
     }
     @IBAction func deletButtonPressed(_ sender: UIButton) {
-        APIManager.deletTask { (error, deletData) in
-            if let error = error {
-                print("error")
-            } else if let deletData = deletData {
-                print("Delet")
-        }
-            
-        }
+        deleteCompletion?(self)
     }
 
 }

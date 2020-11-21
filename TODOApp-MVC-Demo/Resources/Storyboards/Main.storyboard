@@ -172,11 +172,18 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Lu2-i7-9ET"/>
+                    <navigationItem key="navigationItem" id="Lu2-i7-9ET">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="gAP-HH-vxQ">
+                            <connections>
+                                <action selector="addPhotoButtonPressed:" destination="lze-kS-kho" id="l3y-Gx-E6U"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="agelable" destination="LFw-Vz-chM" id="UbS-vY-k8e"/>
                         <outlet property="emailLable" destination="gaN-0c-DOO" id="HSn-NM-Cp3"/>
                         <outlet property="nameLable" destination="fjl-rp-xgs" id="kwU-KP-Yzs"/>
+                        <outlet property="profileImageView" destination="cy7-Xm-Q8A" id="3S2-dB-CuD"/>
                         <outlet property="tableView" destination="UoE-MZ-Faq" id="Kvm-yI-Aaj"/>
                     </connections>
                 </tableViewController>
