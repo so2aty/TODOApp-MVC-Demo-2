@@ -13,7 +13,7 @@
         <scene sceneID="6QD-ah-ejZ">
             <objects>
                 <viewController storyboardIdentifier="TodoListVC" id="xko-eu-rsM" customClass="TodoListVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dah-yt-EtK">
+                    <view key="view" contentMode="scaleToFill" id="dah-yt-EtK" customClass="TodoListView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -30,16 +30,19 @@
                             <constraint firstItem="oFK-TC-6lR" firstAttribute="height" secondItem="dah-yt-EtK" secondAttribute="height" multiplier="0.912946" id="Kbs-mt-HEG"/>
                             <constraint firstItem="oFK-TC-6lR" firstAttribute="centerY" secondItem="ze1-gk-Kar" secondAttribute="centerY" id="gNa-pI-ufO"/>
                         </constraints>
+                        <connections>
+                            <outlet property="tableView" destination="oFK-TC-6lR" id="9mv-9H-yHS"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="HPz-BW-fPf">
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="Bvf-uX-I97">
                             <connections>
-                                <segue destination="lze-kS-kho" kind="show" id="JMU-z2-lTK"/>
+                                <action selector="profileBtnTapped:" destination="xko-eu-rsM" id="dgd-cy-CYA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="oFK-TC-6lR" id="zCE-19-jpj"/>
+                        <outlet property="todoListView" destination="dah-yt-EtK" id="gF1-bC-FQS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25t-os-KyK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -49,8 +52,8 @@
         <!--Profile DetailsVC-->
         <scene sceneID="T6s-mD-unh">
             <objects>
-                <tableViewController id="lze-kS-kho" customClass="ProfileDetailsVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UoE-MZ-Faq">
+                <tableViewController storyboardIdentifier="ProfileDetailsVC" id="lze-kS-kho" customClass="ProfileDetailsVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UoE-MZ-Faq" customClass="ProfileDetailsView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -171,6 +174,13 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
+                        <connections>
+                            <outlet property="agelable" destination="LFw-Vz-chM" id="6QS-AY-UKD"/>
+                            <outlet property="emailLable" destination="gaN-0c-DOO" id="VXI-sZ-HuO"/>
+                            <outlet property="logoutButton" destination="BjN-lp-Qqg" id="LGH-GN-1il"/>
+                            <outlet property="nameLable" destination="fjl-rp-xgs" id="LXz-P1-qHJ"/>
+                            <outlet property="profileImageView" destination="cy7-Xm-Q8A" id="sDP-aG-HE6"/>
+                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Lu2-i7-9ET">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="gAP-HH-vxQ">
@@ -180,11 +190,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="agelable" destination="LFw-Vz-chM" id="UbS-vY-k8e"/>
-                        <outlet property="emailLable" destination="gaN-0c-DOO" id="HSn-NM-Cp3"/>
-                        <outlet property="nameLable" destination="fjl-rp-xgs" id="kwU-KP-Yzs"/>
-                        <outlet property="profileImageView" destination="cy7-Xm-Q8A" id="3S2-dB-CuD"/>
-                        <outlet property="tableView" destination="UoE-MZ-Faq" id="Kvm-yI-Aaj"/>
+                        <outlet property="profileView" destination="UoE-MZ-Faq" id="ClW-NY-yq3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNV-IQ-3lV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -10,14 +10,16 @@ import UIKit
 class SignInVC: UIViewController {
     
     // MARK:- Outlets
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    
+   
+    @IBOutlet var signInView: SignInView!
     
     var presenter : SignInPresenter!
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        signInView.setup()
     }
     
     // MARK:- Public Methods
@@ -46,9 +48,11 @@ class SignInVC: UIViewController {
    }
     
     
-    // MARK:- Private Methods
+    // MARK:- Action
     
     @IBAction func loginBtnTapped(_ sender: UIButton) {
-        presenter.tryToLogin(with: emailTextField.text, password: passwordTextField.text)
+        presenter.tryToLogin(with:signInView.emailTextField.text,password:signInView.passwordTextField.text)
     }
+    
+    
 }

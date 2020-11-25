@@ -10,7 +10,8 @@ import UIKit
 
 class TodoListVC: UIViewController {
     // MARK:- Outlets
-    @IBOutlet weak var tableView: UITableView!
+ 
+    @IBOutlet var todoListView: TodoListView!
     
     // MARK: - Public Properties
     var todosArr: [TodoData] = []
@@ -23,6 +24,7 @@ class TodoListVC: UIViewController {
         presenter.loadAllTodos()
     }
 
+    
     // MARK:- Public Methods
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
@@ -50,12 +52,12 @@ class TodoListVC: UIViewController {
     }
     
     private func setupTableView() {
-        self.tableView.register(UINib.init(nibName: Cells.todoCell, bundle: nil), forCellReuseIdentifier: Cells.todoCell)
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.separatorStyle = .none
-        self.tableView.backgroundColor = UIColor.clear
-        self.tableView.isOpaque = false
+        self.todoListView.tableView.register(UINib.init(nibName: Cells.todoCell, bundle: nil), forCellReuseIdentifier: Cells.todoCell)
+        self.todoListView.tableView.dataSource = self
+        self.todoListView.tableView.delegate = self
+        self.todoListView.tableView.separatorStyle = .none
+        self.todoListView.tableView.backgroundColor = UIColor.clear
+        self.todoListView.tableView.isOpaque = false
     }
     
     @objc func addingButtonPressed() {
@@ -66,7 +68,11 @@ class TodoListVC: UIViewController {
         self.showAlert(title: "Sorry", message: message)
     }
     
-  
+    @IBAction func profileBtnTapped(_ sender: UIBarButtonItem) {
+        let profileVC = ProfileDetailsVC.create()
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
 }
 
 // MARK: - Table view data source & delegate
@@ -98,4 +104,5 @@ extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+
 }

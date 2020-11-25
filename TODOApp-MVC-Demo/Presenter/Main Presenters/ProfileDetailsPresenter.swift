@@ -36,9 +36,9 @@ class ProfileDetailsPresenter {
                 print(error.localizedDescription)
             } else if let userData = userData {
                 
-                self.view.nameLable.text = userData.name
-                self.view.emailLable.text = userData.email
-                self.view.agelable.text = String(userData.age)
+                self.view.profileView.nameLable.text = userData.name
+                self.view.profileView.emailLable.text = userData.email
+                self.view.profileView.agelable.text = String(userData.age)
                 self.view.tableView.reloadData()
             }
         }
@@ -51,7 +51,7 @@ class ProfileDetailsPresenter {
                     if let error = error {
                         print(error.localizedDescription)
                     } else if let userData = userdata {
-                        self.view.agelable.text = age
+                        self.view.profileView.agelable.text = age
                     }
                 }
             }
@@ -62,22 +62,22 @@ class ProfileDetailsPresenter {
         view.imagePicker.allowsEditing = true
         view.imagePicker.sourceType = .photoLibrary
     }
-    
-    func pickImage (_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            view.profileImageView.contentMode = .scaleAspectFit
-            view.profileImageView.image = pickedImage
-            APIManager.uploadPhoto(with: pickedImage){ (response) in
-                if  response == false {
-                    print("error")
-                } else  {
-                    print("ok")
-                }
-            }
-        }
-        view.dismiss(animated: true, completion: nil)
-    }
-    
+//    
+//    func pickImage (image : UIImage) {
+//        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//            view.profileImageView.contentMode = .scaleAspectFit
+//            view.profileImageView.image = pickedImage
+//            APIManager.uploadPhoto(with: pickedImage){ (response) in
+//                if  response == false {
+//                    print("error")
+//                } else  {
+//                    print("ok")
+//                }
+//            }
+//        }
+//        view.dismiss(animated: true, completion: nil)
+//    }
+//    
 
    
 }

@@ -20,6 +20,7 @@ struct ViewControllers {
     static let signUpVC = "SignUpVC"
     static let signInVC = "SignInVC"
     static let todoListVC = "TodoListVC"
+    static let profileDetailsVC = "ProfileDetailsVC"
 }
 
 // Cells

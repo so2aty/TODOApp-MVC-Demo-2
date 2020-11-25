@@ -10,10 +10,7 @@ import UIKit
 
 class ProfileDetailsVC: UITableViewController, UINavigationControllerDelegate {
     // MARK:- Outlets
-    @IBOutlet weak var nameLable: UILabel!
-    @IBOutlet weak var emailLable: UILabel!
-    @IBOutlet weak var agelable: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet var profileView: ProfileDetailsView!
     
     // MARK: - Public Properties
     let imagePicker = UIImagePickerController()
@@ -28,7 +25,7 @@ class ProfileDetailsVC: UITableViewController, UINavigationControllerDelegate {
    
     // MARK:- Public Methods
     class func create() -> ProfileDetailsVC {
-        let profileDetailsVC: ProfileDetailsVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
+        let profileDetailsVC: ProfileDetailsVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileDetailsVC)
         profileDetailsVC.presenter = ProfileDetailsPresenter(view: profileDetailsVC)
         return profileDetailsVC
     }
@@ -73,8 +70,8 @@ extension ProfileDetailsVC:UIImagePickerControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            profileImageView.contentMode = .scaleAspectFit
-            profileImageView.image = pickedImage
+            profileView.profileImageView.contentMode = .scaleAspectFit
+            profileView.profileImageView.image = pickedImage
             APIManager.uploadPhoto(with: pickedImage){ (response) in
                 if  response == false {
                     print("error")

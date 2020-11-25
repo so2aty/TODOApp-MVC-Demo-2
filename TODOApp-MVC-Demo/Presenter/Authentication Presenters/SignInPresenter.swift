@@ -16,15 +16,21 @@ class SignInPresenter {
         self.view = view
     }
     
-    var validator : Validators!
+ 
     
     // MARK:- Privet Methods
     
     private func validateFields (with email: String?, password: String?)->Bool {
-        if !isValidEmail(email: email){
+        if !Validators.shared().isEmptyEmail(email: email){
+            self.view.presentError(with: "Please Enter An Email")
             return false
         }
-        if !isValidPassword(password: password) {
+        if !Validators.shared().isValidEmail(email: email){
+            self.view.presentError(with: "Please Enter Valid Email")
+            return false
+        }
+        if !Validators.shared().isValidPassword(password: password){
+            self.view.presentError(with: "Please Enter Valid Password")
             return false
         }
         return true

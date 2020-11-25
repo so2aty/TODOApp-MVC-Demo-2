@@ -10,17 +10,14 @@ import UIKit
 
 class SignUpVC: UIViewController {
 
-    @IBOutlet weak var NameText: UITextField!
-    @IBOutlet weak var EmailText: UITextField!
-    @IBOutlet weak var PasswordText: UITextField!
-    @IBOutlet weak var AgeText: UITextField!
+    @IBOutlet var signUpView: SignUpView!
     
-    var presenter : SignUpPresenter!
+    var presenter: SignUpPresenter!
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        signUpView.setup()
     }
     
 
@@ -53,7 +50,7 @@ class SignUpVC: UIViewController {
     // MARK:- Private Methods
     
     @IBAction func SignUpButtonPressed(_ sender: UIButton) {
-        presenter.tryToRegister(with: EmailText.text, password: PasswordText.text, name: NameText.text, Age: Int(AgeText.text!))
+        presenter.tryToRegister(with: signUpView.emailTextField.text, password:signUpView.passwordTextField.text, name: signUpView.nameTextField.text, Age: Int(signUpView.ageTextField.text!))
 
     }
 }

@@ -25,7 +25,7 @@ class ToDoListPresenter {
                 print(error.localizedDescription)
             case .success(let result):
                 self.view.todosArr = result.data
-                self.view.tableView.reloadData()
+                self.view.todoListView.tableView.reloadData()
             }
             self.view.hideLoader()
         }
