@@ -12,7 +12,6 @@
         <!--Sign UpVC-->
         <scene sceneID="cMv-G5-22U">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ax-Qi-4cC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SignUpVC" id="T6n-BO-Yei" customClass="SignUpVC" customModule="TODOApp_MVC_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zpo-mT-JwU" customClass="SignUpView" customModule="TODOApp_MVC_Demo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -110,6 +109,7 @@
                         <outlet property="signUpView" destination="Zpo-mT-JwU" id="xgO-ho-xaU"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ax-Qi-4cC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1813.0434782608697" y="118.52678571428571"/>
         </scene>
@@ -168,7 +168,7 @@
                                     <color key="titleColor" red="0.38589036459999998" green="0.1034040079" blue="0.48630267379999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <segue destination="T6n-BO-Yei" kind="show" id="vgs-Gb-GGy"/>
+                                    <action selector="signUpBtnTapped:" destination="7Jk-3t-Q08" eventType="touchUpInside" id="DLz-5G-MVu"/>
                                 </connections>
                             </button>
                         </subviews>

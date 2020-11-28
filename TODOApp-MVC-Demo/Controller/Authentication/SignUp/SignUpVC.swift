@@ -47,11 +47,11 @@ class SignUpVC: UIViewController {
         AppDelegate.shared().window?.rootViewController = navigationController
     }
     
-    // MARK:- Private Methods
+    
+    // MARK:- Action
     
     @IBAction func SignUpButtonPressed(_ sender: UIButton) {
-        presenter.tryToRegister(with: signUpView.emailTextField.text, password:signUpView.passwordTextField.text, name: signUpView.nameTextField.text, Age: Int(signUpView.ageTextField.text!))
-
+        presenter.tryToRegister(with: signUpView.emailTextField.text, password:signUpView.passwordTextField.text, name: signUpView.nameTextField.text, age: Int(signUpView.ageTextField.text!))
     }
 }
 

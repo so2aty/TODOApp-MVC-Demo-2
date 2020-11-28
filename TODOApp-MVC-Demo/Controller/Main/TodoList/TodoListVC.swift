@@ -59,14 +59,16 @@ class TodoListVC: UIViewController {
         self.todoListView.tableView.backgroundColor = UIColor.clear
         self.todoListView.tableView.isOpaque = false
     }
-    
-    @objc func addingButtonPressed() {
-        print("add")
-    }
-    
     private func presentError(with message: String) {
         self.showAlert(title: "Sorry", message: message)
     }
+    
+    
+    // MARK:- Action
+    @objc func addingButtonPressed() {
+        presenter.addTask()
+    }
+    
     
     @IBAction func profileBtnTapped(_ sender: UIBarButtonItem) {
         let profileVC = ProfileDetailsVC.create()

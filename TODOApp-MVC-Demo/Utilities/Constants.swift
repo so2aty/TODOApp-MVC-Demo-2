@@ -40,6 +40,7 @@ struct URLs {
     static let logout = "/user/logout"
     static let EditProfile = base + "/user/me"
     static let uploadPhoto = base + "/user/me/avatar"
+    static let addTask = base + "/task"
 }
 
 // Header Keys
@@ -54,6 +55,7 @@ struct ParameterKeys {
     static let password = "password"
     static let name = "name"
     static let age = "age"
+    static let description = "description"
 }
 
 // UserDefaultsKeys

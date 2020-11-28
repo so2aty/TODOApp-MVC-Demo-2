@@ -50,6 +50,10 @@ class SignInVC: UIViewController {
     
     // MARK:- Action
     
+    @IBAction func signUpBtnTapped(_ sender: UIButton) {
+        let signUpVC = SignUpVC.create()
+        navigationController?.pushViewController(signUpVC, animated: true)
+    }
     @IBAction func loginBtnTapped(_ sender: UIButton) {
         presenter.tryToLogin(with:signInView.emailTextField.text,password:signInView.passwordTextField.text)
     }

@@ -13,6 +13,8 @@
 		8D39A5E8255584750026CBD6 /* ProfileDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39A5E7255584750026CBD6 /* ProfileDetailsVC.swift */; };
 		8D39A5EC255599AB0026CBD6 /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39A5EB255599AB0026CBD6 /* LogoutResponse.swift */; };
 		8D39A5EF25559CF50026CBD6 /* DeletTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */; };
+		8D3C106D2571313A0095E89E /* AddTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C106C2571313A0095E89E /* AddTaskResponse.swift */; };
+		8D3C1074257222E90095E89E /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C1073257222E90095E89E /* TaskData.swift */; };
 		8D45E7DD2567DD7F006FC16B /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */; };
 		8D45E7E02567E192006FC16B /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */; };
 		8D45E7E52567E6E8006FC16B /* TodoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */; };
@@ -52,6 +54,8 @@
 		8D39A5E7255584750026CBD6 /* ProfileDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsVC.swift; sourceTree = "<group>"; };
 		8D39A5EB255599AB0026CBD6 /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
 		8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletTaskResponse.swift; sourceTree = "<group>"; };
+		8D3C106C2571313A0095E89E /* AddTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResponse.swift; sourceTree = "<group>"; };
+		8D3C1073257222E90095E89E /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
 		8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPresenter.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				B749BBF32551FEA300806784 /* TodoData.swift */,
 				8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */,
 				8D2B82702559BA0F00212A78 /* EditProfileResponse.swift */,
+				8D3C106C2571313A0095E89E /* AddTaskResponse.swift */,
+				8D3C1073257222E90095E89E /* TaskData.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -493,6 +499,8 @@
 				8D45E7DD2567DD7F006FC16B /* SignInPresenter.swift in Sources */,
 				8D39A5E8255584750026CBD6 /* ProfileDetailsVC.swift in Sources */,
 				B76E56B52548A63E00C13D43 /* UIViewController+Storyboard.swift in Sources */,
+				8D3C1074257222E90095E89E /* TaskData.swift in Sources */,
+				8D3C106D2571313A0095E89E /* AddTaskResponse.swift in Sources */,
 				B749BBEE2551F85000806784 /* TodoCell.swift in Sources */,
 				B78FB4F0254EE23B00051F31 /* String+trimming.swift in Sources */,
 				8D45E808256E7FB4006FC16B /* SignInView.swift in Sources */,

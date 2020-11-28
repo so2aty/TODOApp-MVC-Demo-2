@@ -19,44 +19,46 @@ class SignUpPresenter {
     // MARK:- Privet Methods
     
     private func validateFields (with email: String?, password: String?)->Bool {
-        if !isValidEmail(email: email){
+        if !Validators.shared().isEmptyEmail(email: email){
+            self.view.presentError(with: "Please Enter An Email")
             return false
         }
-        if !isValidPassword(password: password) {
-            return false
-        }
-        return true
-    }
-    
-    private func isValidEmail(email: String?) -> Bool {
-        guard let email = email?.trimmed, !email.isEmpty else {
-            self.view.presentError(with: "Please Enter an Email")
-            return false
-        }
-        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
-        if !pred.evaluate(with: email) {
+        if !Validators.shared().isValidEmail(email: email){
             self.view.presentError(with: "Please Enter Valid Email")
             return false
         }
-        return true
-    }
-    
-    private func isValidPassword(password: String?) -> Bool {
-        guard let password = password, !password.isEmpty, password.count >= 8 else {
-            self.view.presentError(with: "Password Must be at Least 8 Characters")
+        if !Validators.shared().isValidPassword(password: password){
+            self.view.presentError(with: "Please Enter Valid Password")
             return false
         }
         return true
     }
     
-    private func Register(with email: String?, password: String? , name: String? , Age: Int? ) {
-        guard let email = email, self.isValidEmail(email: email) else {return}
-        guard let password = password, self.isValidPassword(password: password) else {return}
-        guard let name = name else {return}
-        guard let age = Age else {return}
+//    private func isValidEmail(email: String?) -> Bool {
+//        guard let email = email?.trimmed, !email.isEmpty else {
+//            self.view.presentError(with: "Please Enter an Email")
+//            return false
+//        }
+//        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+//        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
+//        if !pred.evaluate(with: email) {
+//            self.view.presentError(with: "Please Enter Valid Email")
+//            return false
+//        }
+//        return true
+//    }
+//
+//    private func isValidPassword(password: String?) -> Bool {
+//        guard let password = password, !password.isEmpty, password.count >= 8 else {
+//            self.view.presentError(with: "Password Must be at Least 8 Characters")
+//            return false
+//        }
+//        return true
+//    }
+    
+    private func Register(with email: String?, password: String? , name: String? , age: Int? ) {
         self.view.showLoader()
-        APIManager.Register(email: email, password: password, name: name, age: age) { (response)  in
+        APIManager.Register(email: email!, password: password!, name: name!, age: age!) { (response)  in
             switch response {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -70,9 +72,9 @@ class SignUpPresenter {
 }
 // MARK:- Public Methods
 extension SignUpPresenter {
-    func tryToRegister(with email: String?, password: String? , name: String? , Age: Int? ) {
+    func tryToRegister(with email: String?, password: String? , name: String? , age: Int? ) {
         if validateFields(with: email, password: password) {
-            Register(with: email, password: password, name: name, Age: Age)
+            Register(with: email, password: password, name: name, age: age)
         }
     }
 }

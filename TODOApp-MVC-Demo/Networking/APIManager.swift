@@ -166,6 +166,38 @@ class APIManager {
         }
     }
 
+    
+    //MARK:- Add Task
+
+    class func addTask(descriptionn: String, completion: @escaping (_ error: Error?, _ addData: AddTaskResponse? ) -> Void) {
+
+        let headers: HTTPHeaders = [HeaderKeys.contentType:"application/json",
+                                    HeaderKeys.authorization:"Bearer \(UserDefaultsManager.shared().token!)"]
+        let params: [String: Any] = [ParameterKeys.description : descriptionn]
+        
+
+        AF.request(URLs.addTask, method: HTTPMethod.post, parameters: params, encoding: JSONEncoding.default, headers: headers).response { response in
+            guard response.error == nil else {
+                print(response.error!)
+                completion(response.error, nil)
+                return
+            }
+
+            guard let data = response.data else {
+                print("didn't get any data from API")
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                let addTaskData = try decoder.decode(AddTaskResponse.self, from: data)
+                completion(nil, addTaskData)
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+
 
 
 //MARK:- upload Photo

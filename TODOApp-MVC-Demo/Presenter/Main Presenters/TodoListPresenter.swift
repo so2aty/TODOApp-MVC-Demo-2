@@ -30,4 +30,18 @@ class ToDoListPresenter {
             self.view.hideLoader()
         }
     }
+    
+    func addTask () {
+        view.showAlertWithTextfield(title: "Add New Task", message: "Please Enter Your Task", okTitle: "ADD") { (task) in
+            if let newTask = task, !(task!.isEmpty) {
+                APIManager.addTask(descriptionn: newTask) { (error, data) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else if let taskData = data {
+                        self.loadAllTodos()
+                    }
+                }
+            }
+        }
+    }
 }
