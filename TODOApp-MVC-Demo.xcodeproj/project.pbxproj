@@ -15,9 +15,9 @@
 		8D39A5EF25559CF50026CBD6 /* DeletTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */; };
 		8D3C106D2571313A0095E89E /* AddTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C106C2571313A0095E89E /* AddTaskResponse.swift */; };
 		8D3C1074257222E90095E89E /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C1073257222E90095E89E /* TaskData.swift */; };
-		8D45E7DD2567DD7F006FC16B /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */; };
-		8D45E7E02567E192006FC16B /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */; };
-		8D45E7E52567E6E8006FC16B /* TodoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */; };
+		8D45E7DD2567DD7F006FC16B /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DC2567DD7F006FC16B /* SignInViewModel.swift */; };
+		8D45E7E02567E192006FC16B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7DF2567E192006FC16B /* SignUpViewModel.swift */; };
+		8D45E7E52567E6E8006FC16B /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7E42567E6E8006FC16B /* TodoListViewModel.swift */; };
 		8D45E7E92567E82D006FC16B /* ProfileDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7E82567E82D006FC16B /* ProfileDetailsPresenter.swift */; };
 		8D45E7ED2568DC39006FC16B /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E7EC2568DC39006FC16B /* Validators.swift */; };
 		8D45E803256E78D0006FC16B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D45E802256E78D0006FC16B /* SignUpView.swift */; };
@@ -56,9 +56,9 @@
 		8D39A5EE25559CF50026CBD6 /* DeletTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletTaskResponse.swift; sourceTree = "<group>"; };
 		8D3C106C2571313A0095E89E /* AddTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskResponse.swift; sourceTree = "<group>"; };
 		8D3C1073257222E90095E89E /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
-		8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
-		8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
-		8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPresenter.swift; sourceTree = "<group>"; };
+		8D45E7DC2567DD7F006FC16B /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		8D45E7DF2567E192006FC16B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		8D45E7E42567E6E8006FC16B /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 		8D45E7E82567E82D006FC16B /* ProfileDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsPresenter.swift; sourceTree = "<group>"; };
 		8D45E7EC2568DC39006FC16B /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		8D45E802256E78D0006FC16B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		8D45E7E22567E68D006FC16B /* Authentication Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				8D45E7DC2567DD7F006FC16B /* SignInPresenter.swift */,
-				8D45E7DF2567E192006FC16B /* SignUpPresenter.swift */,
+				8D45E7DC2567DD7F006FC16B /* SignInViewModel.swift */,
+				8D45E7DF2567E192006FC16B /* SignUpViewModel.swift */,
 			);
 			path = "Authentication Presenters";
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 		8D45E7E32567E6A4006FC16B /* Main Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				8D45E7E42567E6E8006FC16B /* TodoListPresenter.swift */,
+				8D45E7E42567E6E8006FC16B /* TodoListViewModel.swift */,
 				8D45E7E82567E82D006FC16B /* ProfileDetailsPresenter.swift */,
 			);
 			path = "Main Presenters";
@@ -480,7 +480,7 @@
 				8D45E7E92567E82D006FC16B /* ProfileDetailsPresenter.swift in Sources */,
 				8D39A5EF25559CF50026CBD6 /* DeletTaskResponse.swift in Sources */,
 				8D45E818256E92CE006FC16B /* TodoListView.swift in Sources */,
-				8D45E7E02567E192006FC16B /* SignUpPresenter.swift in Sources */,
+				8D45E7E02567E192006FC16B /* SignUpViewModel.swift in Sources */,
 				8D39A5EC255599AB0026CBD6 /* LogoutResponse.swift in Sources */,
 				B749BBF22551FE5C00806784 /* TodosResponse.swift in Sources */,
 				B76E56BF2548AFA000C13D43 /* APIManager.swift in Sources */,
@@ -492,11 +492,11 @@
 				B76E56C52548BACC00C13D43 /* UserData.swift in Sources */,
 				B78FB4EF254EE23B00051F31 /* UIViewController+Alert.swift in Sources */,
 				B76E56B92548A76600C13D43 /* SignInVC.swift in Sources */,
-				8D45E7E52567E6E8006FC16B /* TodoListPresenter.swift in Sources */,
+				8D45E7E52567E6E8006FC16B /* TodoListViewModel.swift in Sources */,
 				B76E56BC2548A84600C13D43 /* SignUpVC.swift in Sources */,
 				B76E56C72548BEE100C13D43 /* UserDefaultsManager.swift in Sources */,
 				B749BBF42551FEA300806784 /* TodoData.swift in Sources */,
-				8D45E7DD2567DD7F006FC16B /* SignInPresenter.swift in Sources */,
+				8D45E7DD2567DD7F006FC16B /* SignInViewModel.swift in Sources */,
 				8D39A5E8255584750026CBD6 /* ProfileDetailsVC.swift in Sources */,
 				B76E56B52548A63E00C13D43 /* UIViewController+Storyboard.swift in Sources */,
 				8D3C1074257222E90095E89E /* TaskData.swift in Sources */,

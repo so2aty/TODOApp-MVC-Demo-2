@@ -8,11 +8,18 @@
 
 import UIKit
 
+protocol SignUpProtocol: class{
+    func switchToMainState()
+    func showLoader()
+    func hideLoader()
+    func presentError(with message: String)
+}
+
 class SignUpVC: UIViewController {
 
     @IBOutlet var signUpView: SignUpView!
     
-    var presenter: SignUpPresenter!
+    var viewModel: signUpViewModelProtocol!
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +31,19 @@ class SignUpVC: UIViewController {
     // MARK:- Public Methods
     class func create() -> SignUpVC {
         let signUpVC: SignUpVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signUpVC)
-        signUpVC.presenter = SignUpPresenter(view: signUpVC)
+        signUpVC.viewModel = SignUpViewModel(view: signUpVC)
         return signUpVC
     }
+  
+    
+    // MARK:- Action
+    
+    @IBAction func SignUpButtonPressed(_ sender: UIButton) {
+        viewModel.tryToRegister(with: signUpView.emailTextField.text, password:signUpView.passwordTextField.text, name: signUpView.nameTextField.text, age: Int(signUpView.ageTextField.text!))
+    }
+}
+
+extension SignUpVC: SignUpProtocol {
     
     func presentError(with message: String) {
        self.showAlert(title: "Sorry", message: message)
@@ -47,12 +64,4 @@ class SignUpVC: UIViewController {
         AppDelegate.shared().window?.rootViewController = navigationController
     }
     
-    
-    // MARK:- Action
-    
-    @IBAction func SignUpButtonPressed(_ sender: UIButton) {
-        presenter.tryToRegister(with: signUpView.emailTextField.text, password:signUpView.passwordTextField.text, name: signUpView.nameTextField.text, age: Int(signUpView.ageTextField.text!))
-    }
 }
-
-

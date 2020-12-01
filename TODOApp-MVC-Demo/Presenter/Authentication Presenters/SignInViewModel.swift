@@ -4,15 +4,18 @@
 //
 //  Created by Mohamed Azooz on 11/20/20.
 //  Copyright © 2020 IDEAEG. All rights reserved.
-//
+
 
 import Foundation
 
-class SignInPresenter {
+protocol  signInViewModelProtocol  {
+    func tryToLogin(with email: String?, password: String?)
+}
+
+class SignInViewModel {
     
-    weak var view: SignInVC!
-    
-    init(view: SignInVC) {
+    weak var view: SignInVCProtocol!
+    init(view: SignInVCProtocol) {
         self.view = view
     }
     
@@ -73,7 +76,7 @@ class SignInPresenter {
     }
 }
 // MARK:- Public Methods
-extension SignInPresenter {
+extension SignInViewModel : signInViewModelProtocol {
     func tryToLogin(with email: String?, password: String?) {
         if validateFields(with: email, password: password) {
             login(with: email, password: password)

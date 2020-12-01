@@ -7,7 +7,11 @@
 //
 
 import UIKit
-
+protocol todoListProtocol {
+    func showLoader()
+    func hideLoader()
+    func presentError(with message: String)
+}
 class TodoListVC: UIViewController {
     // MARK:- Outlets
  
@@ -15,7 +19,7 @@ class TodoListVC: UIViewController {
     
     // MARK: - Public Properties
     var todosArr: [TodoData] = []
-    var presenter : ToDoListPresenter!
+    var presenter : ToDoListViewModel!
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
@@ -28,18 +32,11 @@ class TodoListVC: UIViewController {
     // MARK:- Public Methods
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
-        todoListVC.presenter = ToDoListPresenter(view: todoListVC)
+        todoListVC.presenter = ToDoListViewModel(view: todoListVC)
         return todoListVC
     }
     
-    func showLoader() {
-        self.view.showLoader()
-    }
-    
-    func hideLoader() {
-        self.view.hideLoader()
-    }
-    
+   
     // MARK:- Private Methods
     private func setupViews() {
         setupNavbar()
@@ -59,9 +56,7 @@ class TodoListVC: UIViewController {
         self.todoListView.tableView.backgroundColor = UIColor.clear
         self.todoListView.tableView.isOpaque = false
     }
-    private func presentError(with message: String) {
-        self.showAlert(title: "Sorry", message: message)
-    }
+  
     
     
     // MARK:- Action
@@ -107,4 +102,17 @@ extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
         return 80
     }
 
+}
+extension TodoListVC: todoListProtocol {
+    func showLoader() {
+        self.view.showLoader()
+    }
+    
+    func hideLoader() {
+        self.view.hideLoader()
+    }
+    func presentError(with message: String) {
+        self.showAlert(title: "Sorry", message: message)
+    }
+    
 }

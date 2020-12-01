@@ -7,8 +7,11 @@
 //
 
 import Foundation
+protocol ToDoListViewModelProtocol {
+    func addTask ()
+}
 
-class ToDoListPresenter {
+class ToDoListViewModel {
     
     weak var view: TodoListVC!
     

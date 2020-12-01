@@ -7,14 +7,21 @@
 //
 import UIKit
 
+protocol SignInVCProtocol: class {
+    func switchToMainState()
+    func showLoader()
+    func hideLoader()
+    func presentError(with message: String)
+}
+
 class SignInVC: UIViewController {
     
     // MARK:- Outlets
     
-   
     @IBOutlet var signInView: SignInView!
     
-    var presenter : SignInPresenter!
+    // MARK:- Public Proprities
+    var viewModel : signInViewModelProtocol!
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
@@ -25,10 +32,24 @@ class SignInVC: UIViewController {
     // MARK:- Public Methods
     class func create() -> SignInVC {
         let signInVC: SignInVC = UIViewController.create(storyboardName: Storyboards.authentication, identifier: ViewControllers.signInVC)
-        signInVC.presenter = SignInPresenter(view: signInVC)
+        signInVC.viewModel = SignInViewModel(view: signInVC)
         return signInVC
     }
     
+    // MARK:- Action
+    
+    @IBAction func signUpBtnTapped(_ sender: UIButton) {
+        let signUpVC = SignUpVC.create()
+        navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    @IBAction func loginBtnTapped(_ sender: UIButton) {
+        viewModel.tryToLogin(with:signInView.emailTextField.text,password:signInView.passwordTextField.text)
+    }
+    
+    
+}
+
+extension SignInVC : SignInVCProtocol {
     func presentError(with message: String) {
        self.showAlert(title: "Sorry", message: message)
     }
@@ -46,17 +67,5 @@ class SignInVC: UIViewController {
        let navigationController = UINavigationController(rootViewController: todoListVC)
        AppDelegate.shared().window?.rootViewController = navigationController
    }
-    
-    
-    // MARK:- Action
-    
-    @IBAction func signUpBtnTapped(_ sender: UIButton) {
-        let signUpVC = SignUpVC.create()
-        navigationController?.pushViewController(signUpVC, animated: true)
-    }
-    @IBAction func loginBtnTapped(_ sender: UIButton) {
-        presenter.tryToLogin(with:signInView.emailTextField.text,password:signInView.passwordTextField.text)
-    }
-    
     
 }

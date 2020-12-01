@@ -7,12 +7,15 @@
 //
 
 import Foundation
+protocol signUpViewModelProtocol {
+    func tryToRegister(with email: String?, password: String? , name: String? , age: Int? )
+}
 
-class SignUpPresenter {
+class SignUpViewModel {
     
-    weak var view: SignUpVC!
+    weak var view: SignUpProtocol!
     
-    init(view: SignUpVC) {
+    init(view: SignUpProtocol) {
         self.view = view
     }
     
@@ -71,7 +74,7 @@ class SignUpPresenter {
     }
 }
 // MARK:- Public Methods
-extension SignUpPresenter {
+extension SignUpViewModel: signUpViewModelProtocol {
     func tryToRegister(with email: String?, password: String? , name: String? , age: Int? ) {
         if validateFields(with: email, password: password) {
             Register(with: email, password: password, name: name, age: age)
