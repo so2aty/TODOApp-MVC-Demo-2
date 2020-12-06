@@ -11,6 +11,7 @@ protocol ToDoListViewModelProtocol {
     func addTask (newTask: String)
     func loadAllTodos()
     func deletTask (id : String)
+    func sendTasks() -> [TodoData]
 }
 
 class ToDoListViewModel {
@@ -24,6 +25,11 @@ class ToDoListViewModel {
 }
 
 extension ToDoListViewModel: ToDoListViewModelProtocol {
+    func sendTasks() -> [TodoData] {
+        return tasks
+    }
+    
+    
     func loadAllTodos() {
         self.view.showLoader()
         APIManager.getAllTodos { (response) in

@@ -30,11 +30,11 @@ class TodoListVC: UIViewController {
         super.viewDidLoad()
         setupViews()
         viewModel.loadAllTodos()
-
+        print(todosArr.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       // viewModel.loadAllTodos()
+      // viewModel.loadAllTodos()
     }
 
     
@@ -86,7 +86,7 @@ class TodoListVC: UIViewController {
 
 extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todosArr.count
+        return viewModel.sendTasks().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +94,7 @@ extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.configure(todo: todosArr[indexPath.row].description)
+        cell.configure(todo:viewModel.sendTasks()[indexPath.row].description)
         
         cell.deleteCompletion = { [weak self] cell in
             guard let id = self?.todosArr[indexPath.row].id else {return}
