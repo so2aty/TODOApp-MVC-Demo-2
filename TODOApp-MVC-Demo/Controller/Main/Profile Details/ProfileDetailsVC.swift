@@ -7,33 +7,40 @@
 //
 
 import UIKit
-
+// MARK: - Protocol
+protocol ProfileDetailsVCProtocol {
+    func switchToAuthState()
+    func profileDetailsView () -> ProfileDetailsView
+    
+}
+protocol switchToLogin: class {
+    func showAuthState()
+}
 class ProfileDetailsVC: UITableViewController, UINavigationControllerDelegate {
     // MARK:- Outlets
     @IBOutlet var profileView: ProfileDetailsView!
     
     // MARK: - Public Properties
     let imagePicker = UIImagePickerController()
-    var presenter : ProfileDetailsPresenter!
+    var viewModel : ProfileViewModelProtocol!
+    weak var signInDelegate: goToSignIn?
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        presenter.loadUserData()
+        viewModel.loadUserData()
     }
    
     // MARK:- Public Methods
     class func create() -> ProfileDetailsVC {
         let profileDetailsVC: ProfileDetailsVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.profileDetailsVC)
-        profileDetailsVC.presenter = ProfileDetailsPresenter(view: profileDetailsVC)
+        profileDetailsVC.viewModel = ProfileDetailsViewModel(view: profileDetailsVC)
         return profileDetailsVC
     }
     
-    func switchToMainState() {
-        let signInVC = SignInVC.create()
-        let navigationController = UINavigationController(rootViewController: signInVC)
-        AppDelegate.shared().window?.rootViewController = navigationController
+    func switchToAuthState() {
+        self.signInDelegate?.switchToSignIn()
     }
     
     // MARK: - Table view data source
@@ -48,7 +55,11 @@ class ProfileDetailsVC: UITableViewController, UINavigationControllerDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            presenter.editAge()
+            self.showAlertWithTextfield(title: "Edit Profile", message: "Please Enter Your Age", okTitle: "Save") { (myAge) in
+                if let age = myAge, !(age.isEmpty) {
+                    self.viewModel.editAge(newAge: Int(age)!)
+                }
+            }
         }
     }
     
@@ -56,11 +67,11 @@ class ProfileDetailsVC: UITableViewController, UINavigationControllerDelegate {
     // MARK:- Private Methods
     
     @IBAction func logoutBottonPressed(_ sender: UIButton) {
-        presenter.logOut()
+        viewModel.logOut()
     }
     
     @IBAction func addPhotoButtonPressed(_ sender: Any) {
-        presenter.addPhoto()
+       // viewModel.addPhoto()
         present(imagePicker, animated: true, completion: nil)
     }
 }
@@ -72,13 +83,15 @@ extension ProfileDetailsVC:UIImagePickerControllerDelegate{
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileView.profileImageView.contentMode = .scaleAspectFit
             profileView.profileImageView.image = pickedImage
-            APIManager.uploadPhoto(with: pickedImage){ (response) in
-                if  response == false {
-                    print("error")
-                } else  {
-                    print("ok")
-                }
-            }
+            viewModel.uploadPhoto(pikedImage: pickedImage)
+            
+//            APIManager.uploadPhoto(with: pickedImage){ (response) in
+//                if  response == false {
+//                    print("error")
+//                } else  {
+//                    print("ok")
+//                }
+//            }
         }
         dismiss(animated: true, completion: nil)
     }
@@ -86,5 +99,13 @@ extension ProfileDetailsVC:UIImagePickerControllerDelegate{
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+    
+}
+
+extension ProfileDetailsVC: ProfileDetailsVCProtocol {
+    func profileDetailsView() -> ProfileDetailsView {
+        return profileView
+    }
+    
     
 }

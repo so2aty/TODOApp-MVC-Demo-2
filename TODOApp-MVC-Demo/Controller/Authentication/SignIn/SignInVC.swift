@@ -7,12 +7,15 @@
 //
 import UIKit
 
+
+// MARK:- protocols
 protocol SignInVCProtocol: class {
     func switchToMainState()
     func showLoader()
     func hideLoader()
     func presentError(with message: String)
 }
+
 
 class SignInVC: UIViewController {
     
@@ -21,7 +24,10 @@ class SignInVC: UIViewController {
     @IBOutlet var signInView: SignInView!
     
     // MARK:- Public Proprities
-    var viewModel : signInViewModelProtocol!
+    var viewModel: signInViewModelProtocol!
+    
+//2- Coordinator
+    weak var delegate: goToMain?
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
@@ -63,9 +69,11 @@ extension SignInVC : SignInVCProtocol {
     }
     
     func switchToMainState() {
-       let todoListVC = TodoListVC.create()
-       let navigationController = UINavigationController(rootViewController: todoListVC)
-       AppDelegate.shared().window?.rootViewController = navigationController
+//3- Coordinator
+        self.delegate?.switchToMain()
+//       let todoListVC = TodoListVC.create()
+//       let navigationController = UINavigationController(rootViewController: todoListVC)
+//       AppDelegate.shared().window?.rootViewController = navigationController
    }
     
 }

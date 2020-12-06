@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK:-  Protocols
+
 protocol SignUpProtocol: class{
     func switchToMainState()
     func showLoader()
@@ -19,7 +21,10 @@ class SignUpVC: UIViewController {
 
     @IBOutlet var signUpView: SignUpView!
     
+    
+    // MARK:- Public Proprities
     var viewModel: signUpViewModelProtocol!
+    weak var delegate: goToMain?
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +42,7 @@ class SignUpVC: UIViewController {
   
     
     // MARK:- Action
-    
+
     @IBAction func SignUpButtonPressed(_ sender: UIButton) {
         viewModel.tryToRegister(with: signUpView.emailTextField.text, password:signUpView.passwordTextField.text, name: signUpView.nameTextField.text, age: Int(signUpView.ageTextField.text!))
     }
@@ -59,9 +64,7 @@ extension SignUpVC: SignUpProtocol {
     
     
      func switchToMainState() {
-        let todoListVC = TodoListVC.create()
-        let navigationController = UINavigationController(rootViewController: todoListVC)
-        AppDelegate.shared().window?.rootViewController = navigationController
+        self.delegate?.switchToMain()
     }
     
 }

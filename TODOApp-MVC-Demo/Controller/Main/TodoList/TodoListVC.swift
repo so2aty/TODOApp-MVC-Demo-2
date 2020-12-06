@@ -7,10 +7,13 @@
 //
 
 import UIKit
-protocol todoListProtocol {
+protocol todoListVCProtocol {
     func showLoader()
     func hideLoader()
     func presentError(with message: String)
+    func todoList () -> TodoListView
+    func showAlret ()
+    
 }
 class TodoListVC: UIViewController {
     // MARK:- Outlets
@@ -19,20 +22,26 @@ class TodoListVC: UIViewController {
     
     // MARK: - Public Properties
     var todosArr: [TodoData] = []
-    var presenter : ToDoListViewModel!
+    var viewModel: ToDoListViewModelProtocol!
+    weak var profileDelegate: goToProfileDetails?
     
     // MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        presenter.loadAllTodos()
+        viewModel.loadAllTodos()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       // viewModel.loadAllTodos()
     }
 
     
     // MARK:- Public Methods
     class func create() -> TodoListVC {
         let todoListVC: TodoListVC = UIViewController.create(storyboardName: Storyboards.main, identifier: ViewControllers.todoListVC)
-        todoListVC.presenter = ToDoListViewModel(view: todoListVC)
+        todoListVC.viewModel = ToDoListViewModel(view: todoListVC)
         return todoListVC
     }
     
@@ -61,13 +70,14 @@ class TodoListVC: UIViewController {
     
     // MARK:- Action
     @objc func addingButtonPressed() {
-        presenter.addTask()
+        showAlret()
     }
     
     
     @IBAction func profileBtnTapped(_ sender: UIBarButtonItem) {
-        let profileVC = ProfileDetailsVC.create()
-        navigationController?.pushViewController(profileVC, animated: true)
+        self.profileDelegate?.switchToProfile()
+//        let profileVC = ProfileDetailsVC.create()
+//        navigationController?.pushViewController(profileVC, animated: true)
     }
     
 }
@@ -88,11 +98,12 @@ extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
         
         cell.deleteCompletion = { [weak self] cell in
             guard let id = self?.todosArr[indexPath.row].id else {return}
-            APIManager.deletTask(id: id) { (error, data) in
-                if error == nil {
-                    self?.presenter.loadAllTodos()
-                }
-            }
+            self?.viewModel.deletTask (id : id)
+//            APIManager.deletTask(id: id) { (error, data) in
+//                if error == nil {
+//                    self?.viewModel.loadAllTodos()
+//                }
+//            }
         }
         
         return cell
@@ -103,7 +114,21 @@ extension TodoListVC: UITableViewDataSource, UITableViewDelegate {
     }
 
 }
-extension TodoListVC: todoListProtocol {
+extension TodoListVC: todoListVCProtocol {
+    
+    
+    func showAlret() {
+        self.showAlertWithTextfield(title: "Add New Task", message: "Please Enter Your Task", okTitle: "ADD") { (task) in
+            if let newTask = task, !(task!.isEmpty) {
+                self.viewModel.addTask(newTask: newTask)
+            }
+        }
+    }
+    
+    func todoList () -> TodoListView{
+        return todoListView
+    }
+    
     func showLoader() {
         self.view.showLoader()
     }

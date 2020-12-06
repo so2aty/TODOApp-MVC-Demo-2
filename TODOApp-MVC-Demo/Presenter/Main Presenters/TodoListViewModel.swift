@@ -8,18 +8,22 @@
 
 import Foundation
 protocol ToDoListViewModelProtocol {
-    func addTask ()
+    func addTask (newTask: String)
+    func loadAllTodos()
+    func deletTask (id : String)
 }
 
 class ToDoListViewModel {
     
-    weak var view: TodoListVC!
-    
-    init(view: TodoListVC) {
+    var view: todoListVCProtocol!
+    var tasks = [TodoData]()
+    init(view: todoListVCProtocol) {
         self.view = view
     }
-    
-    // MARK:- Public Methods
+   
+}
+
+extension ToDoListViewModel: ToDoListViewModelProtocol {
     func loadAllTodos() {
         self.view.showLoader()
         APIManager.getAllTodos { (response) in
@@ -27,23 +31,25 @@ class ToDoListViewModel {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let result):
-                self.view.todosArr = result.data
-                self.view.todoListView.tableView.reloadData()
+                self.tasks = result.data
+                self.view.todoList().tableView.reloadData()
             }
             self.view.hideLoader()
         }
     }
-    
-    func addTask () {
-        view.showAlertWithTextfield(title: "Add New Task", message: "Please Enter Your Task", okTitle: "ADD") { (task) in
-            if let newTask = task, !(task!.isEmpty) {
-                APIManager.addTask(descriptionn: newTask) { (error, data) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else if let taskData = data {
-                        self.loadAllTodos()
-                    }
-                }
+    func deletTask (id : String) {
+        APIManager.deletTask(id: id) { (error, data) in
+            if error == nil {
+                self.loadAllTodos()
+            }
+        }
+    }
+    func addTask (newTask: String) {
+        APIManager.addTask(descriptionn: newTask) { (error, data) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let taskData = data {
+                self.loadAllTodos()
             }
         }
     }
